@@ -12,8 +12,8 @@ const prisma = new PrismaClient({ adapter });
 export async function POST(req: Request) {
   const formData = await req.formData();
 
-  const files = formData.getAll("files") as File[];
-  const urls = formData.getAll("urls") as string[];
+  const files = formData.getAll("file") as File[];
+  const urls = formData.getAll("url") as string[];
 
   if (!files.length && !urls.length) {
     return NextResponse.json(
