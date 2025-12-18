@@ -51,7 +51,7 @@ const FileInput = () => {
     // Simulate upload progress
     const uploadedFiles = files.map(async (file) => {
       const formData = new FormData();
-      formData.append("file", file.file);
+      formData.append("files", file.file);
 
       try {
         await axios.post("/api/ingest/", formData, {
@@ -73,18 +73,16 @@ const FileInput = () => {
       } catch (error) {
         console.error("Upload failed for file:", file.file.name, error);
       }
-
-      
     });
 
     //now upload the urls
-      url.forEach(async (urlItem) => {
-        try {
-          await axios.post("/api/ingest/", { url: urlItem });
-        } catch (error) {
-          console.error("Upload failed for URL:", urlItem, error);
-        }
-      });
+    url.forEach(async (urlItem) => {
+      try {
+        await axios.post("/api/ingest/", { url: urlItem });
+      } catch (error) {
+        console.error("Upload failed for URL:", urlItem, error);
+      }
+    });
     await Promise.all(uploadedFiles);
     setIsUploading(false);
     setFiles([]);

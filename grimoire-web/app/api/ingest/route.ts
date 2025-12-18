@@ -1,6 +1,6 @@
 import { supabase } from "@/lib/database";
 import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../generated/prisma/client";
 import { NextResponse } from "next/server";
 
 const adapter = new PrismaPg({
